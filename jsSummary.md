@@ -261,3 +261,199 @@
     console.log(sayHi.prototype); // {} (empty object)
     ```
 
+## Object Cloning and Avoiding Reference Issues
+
+In JavaScript, when you assign one object to another, they both reference the same object in memory. Therefore, modifying one will affect the other.
+
+```javascript
+let a = { value: 10 };
+let b = a;
+a.value = 20;
+console.log(b); // { value: 20 }
+```
+
+### Solution: Using `Object.assign()` Method
+
+To avoid this issue, you can create a copy of the object using the `Object.assign()` method, which creates a shallow copy of the object.
+
+```javascript
+let a = { value: 10 };
+let b = {};
+Object.assign(b, a);
+// Alternatively: let b = { ...a }; // Another way to clone an object
+a.value = 20;
+console.log(b); // { value: 10 }
+```
+
+## Garbage Collection in JavaScript
+
+In JavaScript, memory management is handled by the garbage collector, which automatically allocates and deallocates memory, so developers don't need to worry about it.
+
+## Built-in Math Functions
+
+JavaScript provides several built-in functions to handle mathematical operations:
+
+```javascript
+console.log(Math.random()); // Random number between 0 and 1
+console.log(Math.random() * 10); // Random number between 0 and 10
+console.log(Math.random() * 10 + 1); // Random number between 1 and 10
+console.log(Math.round(1.9)); // 2
+console.log(Math.ceil(1.1)); // 2
+console.log(Math.floor(1.9)); // 1
+console.log(Math.max(1, 2, 3, 4)); // 4
+console.log(Math.min(1, 2, 3, 4)); // 1
+```
+
+## Strings in JavaScript
+
+JavaScript has both string primitives and string objects.
+
+```javascript
+const message = 'This is my first message'; // String primitive
+const another = new String('hi'); // String object
+
+console.log(typeof message); // string
+console.log(typeof another); // object
+```
+
+### String Methods
+
+JavaScript provides many methods for string manipulation:
+
+```javascript
+console.log(message.length); // 24
+console.log(message[0]); // T
+console.log(message.includes('is')); // true
+console.log(message.startsWith('This')); // true
+console.log(message.endsWith('message')); // true
+console.log(message.indexOf('is')); // 2
+console.log(message.replace('first', 'second')); // This is my second message
+console.log(message.toUpperCase()); // THIS IS MY FIRST MESSAGE
+console.log(message.toLowerCase()); // this is my first message
+console.log(message.trim()); // This is my first message
+console.log(message.split(' ')); // [ 'This', 'is', 'my', 'first', 'message' ]
+```
+
+## Template Literals
+
+Template literals simplify string creation and formatting:
+
+```javascript
+let name = 'John';
+let greet = 'hi';
+let message1 = greet + ' ' + name + ',\n'; // Manual formatting
+let message2 = `${greet} ${name},`; // Using template literals
+console.log(message1);
+console.log(message2);
+```
+
+## Date Handling
+
+JavaScript provides a `Date` object for handling dates and times:
+
+```javascript
+const now = new Date();
+const date1 = new Date('May 11 2018 09:00');
+const date2 = new Date(2018, 4, 11, 9); // Month is zero-based
+now.setFullYear(2017);
+console.log(now.getDate());
+console.log(now.getMonth());
+console.log(now.getDate());
+console.log(now.getFullYear());
+console.log(now.getHours());
+console.log(now.getMinutes());
+console.log(now.getSeconds());
+```
+
+## Working with Arrays
+
+### Adding Elements
+
+You can add elements to the beginning, middle, or end of an array:
+
+```javascript
+const numbers = [3, 4];
+numbers.push(5, 6, 7); // Add to the end
+numbers.unshift(0, 1, 2); // Add to the beginning
+numbers.splice(2, 0, 'a', 'b'); // Add to the middle
+console.log(numbers); // [0, 1, 'a', 'b', 2, 3, 4, 5, 6, 7]
+```
+
+### Finding Elements
+
+You can find elements in an array using various methods:
+
+```javascript
+const numbers1 = [1, 2, 3, 4, 2];
+const index = numbers1.indexOf(2);
+const lastIndex = numbers1.lastIndexOf(2);
+console.log(index); // 1
+console.log(lastIndex); // 4
+console.log(numbers1.indexOf(10));  // -1
+console.log(numbers1.includes(10)); // false
+```
+
+### Working with Objects in Arrays
+
+You can search for objects in an array using `find()`:
+
+```javascript
+const courses = [
+    { id: 1, name: 'a' },
+    { id: 2, name: 'b' }
+];
+const course = courses.find(course => course.name === 'a');
+console.log(course); // { id: 1, name: 'a' }
+```
+
+### Arrow Functions
+
+Arrow functions provide a concise syntax for writing functions:
+
+```javascript
+// Function declaration
+function greet1() {
+    console.log('hi');
+}
+// Function expression
+let greet2 = function() {
+    console.log('hi');
+};
+// Arrow function
+let greet3 = () => console.log('hi');
+// Arrow function with parameters
+let greet4 = name => console.log('hi ' + name);
+```
+
+### Removing Elements
+
+You can remove elements from the beginning, middle, or end of an array:
+
+```javascript
+const numbers2 = [1, 2, 3, 4];
+const last = numbers2.pop(); // Remove from the end
+const first = numbers2.shift(); // Remove from the beginning
+numbers2.splice(1, 1); // Remove from the middle
+console.log(numbers2); // [1, 3, 4]
+```
+
+### Clearing an Array
+
+There are several ways to clear an array:
+
+```javascript
+let numbers3 = [1, 2, 3, 4];
+let another1 = numbers3;
+
+// Solution 1
+// numbers3 = []; 
+
+// Solution 2
+numbers3.length = 0;
+
+// Solution 3
+// numbers3.splice(0, numbers3.length);
+
+console.log(numbers3); // []
+console.log(another1); // []
+```
